@@ -8,12 +8,11 @@
     </head>
     <body>
         <header>
-            <h1>Ejercicio 00</h1>
+            <h1>Ejercicio 01</h1>
         </header>
         <main>
             <?php
-                echo 'Hola mundo';
-                phpinfo();
+                show_source("../codigoPHP/ejercicio01.php");
             ?>
         </main>
         <footer>
