@@ -10,12 +10,20 @@
         <header>
             <h1>Desarrollo Web en Entorno Servidor</h1>
         </header>
-        <nav>
-            <div>
-                <h2>Estudios</h2>
-                
-            </div>
-        </nav>
+        <main>
+            <<table>
+                <tr>
+                    <th span="col">Ejercicio</th>
+                    <th span="col">Enunciado</th>
+                </tr>
+                <tr>
+                    <td>0</td>
+                    <td>Hola mundo y phpinfo()</td>
+                    <td><a href="codigoPHP/ejercicio00.php">Ejecutar</a></td>
+                    <td>Mostrar</td>
+                </tr>
+            </table>
+        </main>
         <footer>
             <a href="https://github.com/LuisFerrGon/208DWESProyectoDWES">GitHub</a>
             <a href="../doc/Curriculum.pdf">Curriculum</a>
