@@ -12,8 +12,7 @@
         </header>
         <main>
             <?php
-                echo 'Hola mundo';
-                phpinfo();
+                show_source("../codigoPHP/ejercicio02.php");
             ?>
         </main>
         <footer>

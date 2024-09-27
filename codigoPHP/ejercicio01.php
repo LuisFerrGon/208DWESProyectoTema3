@@ -8,12 +8,19 @@
     </head>
     <body>
         <header>
-            <h1>Ejercicio 00</h1>
+            <h1>Ejercicio 01</h1>
         </header>
         <main>
             <?php
-                echo 'Hola mundo';
-                phpinfo();
+                $string="cadena";
+                $int=10;
+                $float=11.3;
+                $bool=true;
+                echo $string;
+                print $int;
+                printf($float);
+                print_r($bool);
+                var_dump($bool);
             ?>
         </main>
         <footer>

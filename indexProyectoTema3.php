@@ -15,19 +15,31 @@
                 <tr>
                     <th span="col">Ejercicio</th>
                     <th span="col">Enunciado</th>
-                </tr>
+                </tr><!--Head-->
                 <tr>
                     <td>0</td>
                     <td>Hola mundo y phpinfo()</td>
                     <td><a href="codigoPHP/ejercicio00.php">Ejecutar</a></td>
-                    <td>Mostrar</td>
-                </tr>
+                    <td><a href="mostrarcodigo/muestraEjercicio00">Mostrar</a></td>
+                </tr><!--00-->
+                <tr>
+                    <td>1</td>
+                    <td>Variables</td>
+                    <td><a href="codigoPHP/ejercicio01.php">Ejecutar</a></td>
+                    <td><a href="mostrarcodigo/muestraEjercicio01">Mostrar</a></td>
+                </tr><!--01-->
+                <tr>
+                    <td>2</td>
+                    <td>Variables</td>
+                    <td><a href="codigoPHP/ejercicio02.php">Ejecutar</a></td>
+                    <td><a href="mostrarcodigo/muestraEjercicio02">Mostrar</a></td>
+                </tr><!--02-->
             </table>
         </main>
         <footer>
-            <a href="https://github.com/LuisFerrGon/208DWESProyectoDWES">GitHub</a>
-            <a href="../doc/Curriculum.pdf">Curriculum</a>
-            <a href="../index.html">Página anterior</a>
+            <a href="../index.php">Luis Ferreras</a>
+            <a href="../208DWESProyectoDWES/indexProyectoDWES.php">DWES</a>
+            <a href="https://github.com/LuisFerrGon/208DWESProyectoTema3">GitHub</a>
         </footer>
     </body>
 </html>

@@ -8,12 +8,21 @@
     </head>
     <body>
         <header>
-            <h1>Ejercicio 00</h1>
+            <h1>Ejercicio 02</h1>
         </header>
         <main>
             <?php
-                echo 'Hola mundo';
-                phpinfo();
+                echo <<<END
+                            3
+                        2
+                    1
+                0
+                END;
+                echo <<<END
+                            3
+                        2
+                    1
+                    END;
             ?>
         </main>
         <footer>
