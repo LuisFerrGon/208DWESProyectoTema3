@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<!--Autor: Luis Ferreras González-->
+<!--Autor: Luis Ferreras González
+    Version 1.2.2-->
 <html lang="es">
     <head>
         <meta charset="UTF-8">
@@ -30,7 +31,7 @@
                 </tr><!--01-->
                 <tr>
                     <td>2</td>
-                    <td>Variables</td>
+                    <td>Heredoc</td>
                     <td><a href="codigoPHP/ejercicio02.php">Ejecutar</a></td>
                     <td><a href="mostrarcodigo/muestraEjercicio02.php">Mostrar</a></td>
                 </tr><!--02-->

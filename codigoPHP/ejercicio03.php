@@ -8,16 +8,11 @@
     </head>
     <body>
         <header>
-            <h1>Ejercicio 02</h1>
+            <h1>Ejercicio 03</h1>
         </header>
         <main>
             <?php
-                $cadenahere=<<<TEXTO
-                    Prueba de "heredoc" linea 1
-                    Prueba de "heredoc" linea 2
-                    Prueba de "heredoc" linea 3
-                TEXTO;
-                echo $cadenahere;
+                
             ?>
         </main>
         <footer>
