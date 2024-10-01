@@ -11,7 +11,7 @@
             <h1>Desarrollo Web en Entorno Servidor</h1>
         </header>
         <main>
-            <<table>
+            <table>
                 <tr>
                     <th span="col">Ejercicio</th>
                     <th span="col">Enunciado</th>
