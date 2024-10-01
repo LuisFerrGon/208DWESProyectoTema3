@@ -16,11 +16,10 @@
                 $int=10;
                 $float=11.3;
                 $bool=true;
-                echo $string;
-                print $int;
-                printf($float);
-                print_r($bool);
-                var_dump($bool);
+                echo "La variable \$string es tipo string y su valor es $String";
+                echo "La variable \$int es tipo int y su valor es $int";
+                echo "La variable \$float es tipo float y su valor es $float";
+                echo "La variable \$bool es tipo bool y su valor es $bool";
             ?>
         </main>
         <footer>

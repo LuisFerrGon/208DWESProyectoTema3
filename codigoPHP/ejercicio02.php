@@ -12,17 +12,17 @@
         </header>
         <main>
             <?php
-                echo <<<END
+                print_r(<<<END
                             3
                         2
                     1
                 0
-                END;
-                echo <<<END
+                END);
+                print_r(<<<END
                             3
                         2
                     1
-                    END;
+                    END);
             ?>
         </main>
         <footer>
