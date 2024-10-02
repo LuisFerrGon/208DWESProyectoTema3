@@ -8,11 +8,13 @@
     </head>
     <body>
         <header>
-            <h1>Ejercicio 02</h1>
+            <h1>Ejercicio 03</h1>
         </header>
         <main>
             <?php
-                show_source("../codigoPHP/ejercicio02.php");
+                $fecha=date_create("now");
+                date_add($fecha,date_interval_create_from_date_string("60 days"));
+                echo date_format($fecha,"Y-m-d H:i:s");
             ?>
         </main>
         <footer>

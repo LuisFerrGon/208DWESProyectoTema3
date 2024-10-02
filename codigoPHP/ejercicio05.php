@@ -8,11 +8,12 @@
     </head>
     <body>
         <header>
-            <h1>Ejercicio 02</h1>
+            <h1>Ejercicio 03</h1>
         </header>
         <main>
             <?php
-                show_source("../codigoPHP/ejercicio02.php");
+                $marca=strtotime(date("h:i:s"));
+                echo $marca;
             ?>
         </main>
         <footer>
