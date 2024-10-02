@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--Autor: Luis Ferreras González
-    02/10-->
+    02/10 V2-->
 <html lang="es">
     <head>
         <meta charset="UTF-8">

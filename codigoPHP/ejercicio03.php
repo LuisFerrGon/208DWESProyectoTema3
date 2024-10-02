@@ -12,8 +12,19 @@
         </header>
         <main>
             <?php
-                date_default_timezone_set('Europe/Madrid');
-                echo date("H:i:s");
+                //$fechaActual=new DateTime('now', new DateTimeZone("Europe/Madrid"));
+                //echo $fechaActual->format('E\s d \d\e m \d\e\l Y \y \s\o\n \l\a\s H:i:s');
+                $fechaEspana=new DateTime('now', new DateTimeZone("Europe/Madrid"));
+                $fechaPortugal=new DateTime('now', new DateTimeZone("Europe/Lisbon"));
+                $fechaNacimiento=mktime(00, 00, 00, 12, 11, 2005);
+                $fechaFuturo=mktime(00, 00, 00, 01, 01, 2050);
+                echo(
+                    "Hola, hoy es ".$fechaEspana->format('d \d\e m \d\e\l Y').
+                    " y son las ".$fechaEspana->format('H:i:s').
+                    " en Benavente y las ".$fechaPortugal->format('H:i:s').
+                    " en Oporto.<br>Nací el ".date('d \d\e m \d\e\l Y', $fechaNacimiento).
+                    ""
+                );
             ?>
         </main>
         <footer>

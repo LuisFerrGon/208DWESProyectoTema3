@@ -12,8 +12,8 @@
         </header>
         <main>
             <?php
-                date_default_timezone_set('Europe/Lisbon');
-                echo date("H:i:s");
+                $fechaActual=new DateTime('now', new DateTimeZone("Europe/Lisbon"));
+                echo $fechaActual->format('E\s d \d\e m \d\e\l Y \y \s\o\n \l\a\s H:i:s');
             ?>
         </main>
         <footer>
