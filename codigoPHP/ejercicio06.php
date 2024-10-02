@@ -12,9 +12,9 @@
         </header>
         <main>
             <?php
-                $fecha=date_create("now");
+                $fecha=new DateTime("now");
                 date_add($fecha,date_interval_create_from_date_string("60 days"));
-                echo date_format($fecha,"Y-m-d H:i:s");
+                echo $fecha->format('\S\e\r\á \e\l d \d\e m \d\e\l Y \y \s\o\n \l\a\s H:i:s');
             ?>
         </main>
         <footer>
