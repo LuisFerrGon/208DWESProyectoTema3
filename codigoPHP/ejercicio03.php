@@ -12,7 +12,8 @@
         </header>
         <main>
             <?php
-                
+                date_default_timezone_set('Europe/Madrid');
+                echo date("H:i:s");
             ?>
         </main>
         <footer>

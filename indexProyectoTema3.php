@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--Autor: Luis Ferreras González
-    Version 1.2.2-->
+    02/10-->
 <html lang="es">
     <head>
         <meta charset="UTF-8">
@@ -35,6 +35,41 @@
                     <td><a href="codigoPHP/ejercicio02.php">Ejecutar</a></td>
                     <td><a href="mostrarcodigo/muestraEjercicio02.php">Mostrar</a></td>
                 </tr><!--02-->
+                <tr>
+                    <td>3</td>
+                    <td>Hola mundo y phpinfo()</td>
+                    <td><a href="codigoPHP/ejercicio03.php">Ejecutar</a></td>
+                    <td><a href="mostrarcodigo/muestraEjercicio03.php">Mostrar</a></td>
+                </tr><!--03-->
+                <tr>
+                    <td>4</td>
+                    <td>Variables</td>
+                    <td><a href="codigoPHP/ejercicio04.php">Ejecutar</a></td>
+                    <td><a href="mostrarcodigo/muestraEjercicio04.php">Mostrar</a></td>
+                </tr><!--04-->
+                    <td>5</td>
+                    <td>Variables</td>
+                    <td><a href="codigoPHP/ejercicio05.php">Ejecutar</a></td>
+                    <td><a href="mostrarcodigo/muestraEjercicio05.php">Mostrar</a></td>
+                </tr><!--05-->
+                <tr>
+                    <td>6</td>
+                    <td>Heredoc</td>
+                    <td><a href="codigoPHP/ejercicio06.php">Ejecutar</a></td>
+                    <td><a href="mostrarcodigo/muestraEjercicio06.php">Mostrar</a></td>
+                </tr><!--06-->
+                <tr>
+                    <td>7</td>
+                    <td>Hola mundo y phpinfo()</td>
+                    <td><a href="codigoPHP/ejercicio07.php">Ejecutar</a></td>
+                    <td><a href="mostrarcodigo/muestraEjercicio07.php">Mostrar</a></td>
+                </tr><!--07-->
+                <tr>
+                    <td>8</td>
+                    <td>Variables</td>
+                    <td><a href="codigoPHP/ejercicio08.php">Ejecutar</a></td>
+                    <td><a href="mostrarcodigo/muestraEjercicio08.php">Mostrar</a></td>
+                </tr><!--08-->
             </table>
         </main>
         <footer>
