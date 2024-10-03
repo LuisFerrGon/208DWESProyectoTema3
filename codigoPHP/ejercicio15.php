@@ -8,11 +8,25 @@
     </head>
     <body>
         <header>
-            <h1>Ejercicio 03</h1>
+            <h1>Ejercicio 15</h1>
         </header>
         <main>
             <?php
-                echo getcwd();
+                $vectorSueldo=[
+                    "Lunes"=>1.00,
+                    "Martes"=>2.20,
+                    "Miércoles"=>3.03,
+                    "Jueves"=>4.40,
+                    "Viernes"=>5.05,
+                    "Sábado"=>6.60,
+                    "Domingo"=>7.07
+                ];
+                $sueldoFinal=0;
+                foreach($vectorSueldo as $key=>$value){
+                    echo "$key: $value €<br>";
+                    $sueldoFinal+=$value;
+                }
+                echo "Sueldo total: $sueldoFinal €";
             ?>
         </main>
         <footer>

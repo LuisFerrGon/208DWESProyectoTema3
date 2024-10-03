@@ -14,17 +14,23 @@
             <?php
                 //$fechaActual=new DateTime('now', new DateTimeZone("Europe/Madrid"));
                 //echo $fechaActual->format('E\s d \d\e m \d\e\l Y \y \s\o\n \l\a\s H:i:s');
-                $fechaEspana=new DateTime('now', new DateTimeZone("Europe/Madrid"));
-                $fechaPortugal=new DateTime('now', new DateTimeZone("Europe/Lisbon"));
-                $fechaNacimiento=mktime(00, 00, 00, 12, 11, 2005);
-                $fechaFuturo=mktime(00, 00, 00, 01, 01, 2050);
+                $zonaEspana=new DateTimeZone("Europe/Madrid");
+                $zonaPortugal=new DateTimeZone("Europe/Lisbon");
+                $fechaEspana=new DateTime('now', $zonaEspana);
+                $fechaPortugal=new DateTime('now',$zonaPortugal);
+                $fechaNacimiento=new DateTime("2005-12-11",$zonaEspana);
+                $fechaFuturo=new DateTime("2050-01-01",$zonaEspana);
                 echo(
                     "Hola, hoy es ".$fechaEspana->format('d \d\e m \d\e\l Y').
                     " y son las ".$fechaEspana->format('H:i:s').
                     " en Benavente y las ".$fechaPortugal->format('H:i:s').
-                    " en Oporto.<br>Nací el ".date('d \d\e m \d\e\l Y', $fechaNacimiento).
-                    ""
+                    " en Oporto.<br>Nací el ".$fechaEspana->format('d \d\e m \d\e\l Y').
+                    " y por tanto tengo ".$fechaEspana->diff($fechaNacimiento)->y.
+                    " años, que es lo mismo que ".$fechaEspana->diff($fechaNacimiento)->days.
+                    " días.<br/>El ".$fechaFuturo->format('d \d\e m \d\e\l Y').
+                    " tendré ".$fechaFuturo->diff($fechaNacimiento)->y." años."
                 );
+                
             ?>
         </main>
         <footer>
