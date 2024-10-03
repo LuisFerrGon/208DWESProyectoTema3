@@ -8,13 +8,13 @@
     </head>
     <body>
         <header>
-            <h1>Ejercicio 03</h1>
+            <h1>Ejercicio 06</h1>
         </header>
         <main>
             <?php
                 $fecha=new DateTime("now");
                 date_add($fecha,date_interval_create_from_date_string("60 days"));
-                echo $fecha->format('\S\e\r\á \e\l d \d\e m \d\e\l Y \y \s\o\n \l\a\s H:i:s');
+                echo $fecha->format('\S\e\r\á \e\l d \d\e m \d\e\l Y \y \s\e\r\á\n \l\a\s H:i:s');
             ?>
         </main>
         <footer>

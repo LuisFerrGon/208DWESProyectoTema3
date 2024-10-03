@@ -8,7 +8,7 @@
     </head>
     <body>
         <header>
-            <h1>Ejercicio 08</h1>
+            <h1>Ejercicio 07</h1>
         </header>
         <main>
             <?php
