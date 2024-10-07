@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--Autor: Luis Ferreras González
-    03/10-->
+    07/10-->
 <html lang="es">
     <head>
         <meta charset="UTF-8">
@@ -65,6 +65,12 @@
                     <td><a href="codigoPHP/ejercicio07.php">Ejecutar</a></td>
                     <td><a href="mostrarcodigo/muestraEjercicio07.php">Mostrar</a></td>
                 </tr><!--07-->
+                <tr>
+                    <td>12</td>
+                    <td>Variables supergloblales</td>
+                    <td><a href="codigoPHP/ejercicio12.php">Ejecutar</a></td>
+                    <td><a href="mostrarcodigo/muestraEjercicio12.php">Mostrar</a></td>
+                </tr><!--12-->
                 <tr>
                     <td>15</td>
                     <td>Array</td>
