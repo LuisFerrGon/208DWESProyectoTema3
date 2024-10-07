@@ -12,23 +12,58 @@
         </header>
         <main>
             <?php
-                $superglobales=[
-                    1=>'_SERVER',
-                    2=>'_REQUEST',
-                    3=>'_GET',
-                    4=>'_POST',
-                    5=>'_COOKIE',
-                    6=>'_ENV',
-                    7=>'_FILES',
-                    8=>'_SESSION',
-                    9=>'GLOBAL'
-                ];
-                foreach($superglobales as $valor){
-                    if(!is_null($$valor)){
-                        echo '<h2>$_SERVER</h2>';
-                        foreach($_SERVER as $key=>$key){
-                            print_r($key."=>".$key."<br>");
-                        }
+                if(!empty($_SERVER)){
+                    echo '<h2>$_SERVER</h2>';
+                    foreach($_SERVER as $key=>$value){
+                        print_r($key."=>".$value."<br>");
+                    }
+                }
+                if(!empty($_REQUEST)){
+                    echo '<h2>$_REQUEST</h2>';
+                    foreach($_REQUEST as $key=>$value){
+                        print_r($key."=>".$value."<br>");
+                    }
+                }
+                if(!empty($_GET)){
+                    echo '<h2>$_GET</h2>';
+                    foreach($_GET as $key=>$value){
+                        print_r($key."=>".$value."<br>");
+                    }
+                }
+                if(!empty($_POST)){
+                    echo '<h2>$_POST</h2>';
+                    foreach($_POST as $key=>$value){
+                        print_r($key."=>".$value."<br>");
+                    }
+                }
+                if(!empty($_COOKIE)){
+                    echo '<h2>$_COOKIE</h2>';
+                    foreach($_COOKIE as $key=>$value){
+                        print_r($key."=>".$value."<br>");
+                    }
+                }
+                if(!empty($_ENV)){
+                    echo '<h2>$_ENV</h2>';
+                    foreach($_ENV as $key=>$value){
+                        print_r($key."=>".$value."<br>");
+                    }
+                }
+                if(!empty($_FILES)){
+                    echo '<h2>$_FILES</h2>';
+                    foreach($_FILES as $key=>$value){
+                        print_r($key."=>".$value."<br>");
+                    }
+                }
+                if(!empty($_SESSION)){
+                    echo '<h2>$_SESSION</h2>';
+                    foreach($_SESSION as $key=>$value){
+                        print_r($key."=>".$value."<br>");
+                    }
+                }
+                if(!empty($GLOBAL)){
+                    echo '<h2>$GLOBAL</h2>';
+                    foreach($GLOBAL as $key=>$value){
+                        print_r($key."=>".$value."<br>");
                     }
                 }
             ?>
