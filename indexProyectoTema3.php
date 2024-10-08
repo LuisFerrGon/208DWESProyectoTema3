@@ -77,6 +77,18 @@
                     <td><a href="codigoPHP/ejercicio15.php">Ejecutar</a></td>
                     <td><a href="mostrarcodigo/muestraEjercicio15.php">Mostrar</a></td>
                 </tr><!--15-->
+                <tr>
+                    <td>21</td>
+                    <td>Formulario</td>
+                    <td><a href="codigoPHP/ejercicio21.php">Ejecutar</a></td>
+                    <td><a href="mostrarcodigo/muestraEjercicio21.php">Mostrar</a></td>
+                </tr><!--21-->
+                <tr>
+                    <td>22</td>
+                    <td>Formulario 2</td>
+                    <td><a href="codigoPHP/ejercicio22.php">Ejecutar</a></td>
+                    <td><a href="mostrarcodigo/muestraEjercicio22.php">Mostrar</a></td>
+                </tr><!--22-->
             </table>
         </main>
         <footer>
