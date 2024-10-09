@@ -12,15 +12,23 @@
         </header>
         <main>
             <?php
+            /*
+             * @author Luis Ferreras
+             * @version 2024/10/09
+             */
                 if(isset($_REQUEST['enviar'])){
+                // Se ha enviado el formulario
                     echo"Nombre: ".$_REQUEST['nombre']."<br/>";
                     echo"Apellidos: ".$_REQUEST['apellidos'];
-                }else{?>
-                    <form name="ej22" action="<?php echo $_SERVER['PHP_SELF'];?>" method="post">
-                        Nombre: <input type="text" name="nombre" id="nombre"/><br/>
-                        Apellidos: <input type="text" name="apellidos" id="apellidos"><br/>
-                        <input type="submit" name="enviar" id="enviar">
-                    </form><?php
+                }else{
+                // No se ha eviado
+            ?>
+                <form name="ej22" action="<?php echo $_SERVER['PHP_SELF']// A si mismo;?>" method="post">
+                    Nombre: <input type="text" name="nombre" id="nombre"/><br/>
+                    Apellidos: <input type="text" name="apellidos" id="apellidos"><br/>
+                    <input type="submit" name="enviar" id="enviar">
+                </form>
+            <?php
                 }
             ?>
         </main>

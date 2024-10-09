@@ -12,8 +12,14 @@
         </header>
         <main>
             <?php
+            /*
+             * @author Luis Ferreras
+             * @version 2024/10/09
+             */
+            // Respuestas dadas en el formulario
                 $nombre=$_REQUEST['nombre'];
                 $apellidos=$_REQUEST['apellidos'];
+            // Se muestran las respuestas
                 echo"Nombre: $nombre<br/>";
                 echo"Apellidos: $apellidos";
             ?>
