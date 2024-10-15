@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <!--Autor: Luis Ferreras González
-    09/10-->
+    15/10-->
 <html lang="es">
     <head>
         <meta charset="UTF-8">
@@ -161,8 +161,8 @@
                     <tr>
                         <th span="row" class="num">24</th>
                         <td>Construir un formulario para recoger un cuestionario realizado a una persona y mostrar en la misma página las preguntas y las respuestas recogidas; en el caso de que alguna respuesta esté vacía o errónea volverá a salir el formulario con el mensaje correspondiente, pero las respuestas que habíamos tecleado correctamente aparecerán en el formulario y no tendremos que volver a teclearlas</td>
-                        <td class="eje"></td>
-                        <td class="mos"></td>
+                        <td class="eje"><a href="codigoPHP/ejercicio24.php">Ejecutar</a></td>
+                        <td class="mos"><a href="mostrarcodigo/muestraEjercicio24.php">Mostrar</a></td>
                     </tr><!--24-->
                     <tr>
                         <th span="row" class="num">25</th>
