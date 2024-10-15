@@ -1,0 +1,42 @@
+:root{
+    --color1:#f6d76b;
+    --color2:#ff9036;
+    --color3:#d6254d;
+    --color4:#ff5475;
+    --color5:#fdeba9;
+    --color6:#8b0000;
+}
+/*Reseteo*/
+*{
+    margin: 5px;
+    padding: 0px;
+}
+a{
+    text-decoration: none;
+}
+h1{
+    text-align: center;
+    color: var(--color5);
+    background-color: var(--color4);
+    border-radius: 50px;
+    border: 2.5px solid var(--color6);
+}
+a:link, a:visited, a:hover, a:active{
+    color: var(--color3);
+}
+.obligatorio{
+    background-color: yellow;
+}
+.error{
+    color: red;
+}
+footer{
+    background-color: white;
+    border-radius: 10px;
+    border: 2.5px solid var(--color5);
+    display: flex;
+    justify-content: space-evenly;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
