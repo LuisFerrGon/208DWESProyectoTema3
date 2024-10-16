@@ -19,10 +19,9 @@
             require_once '../core/231018libreriaValidacion.php';
             $entradaOK=true; // Estado de las respuestas
             $aErrores=[];// Mensajes de error
-            $fechaMax=new DateTime();
             if(isset($_REQUEST['enviar'])){// Se ha enviado el formulario
                 $aErrores['nombreApellidos']=validacionFormularios::comprobarAlfabetico($_REQUEST['nombreApellidos'], 1000, 1, 1);
-                $aErrores['nacimiento']=validacionFormularios::validarFecha($_REQUEST['nacimiento'], $fechaMax->format("d/m/Y"), '01/01/1950', 1);
+                $aErrores['nacimiento']=validacionFormularios::validarFecha($_REQUEST['nacimiento'], '01/01/2024', '01/01/1950', 1);
                 //Se llena el array de los mesajes de error
                 foreach ($aErrores as $value) {
                     if($value!= null){
@@ -37,11 +36,11 @@
                 echo"Fecha de naciemiento: ".$_REQUEST['nacimiento'];
             }else{// No se ha enviado?>
                 <form name="ej23" action="<?php echo $_SERVER['PHP_SELF'];// A si mismo?>" method="post">
-                    Nombre y apellidos: <input type="text" name="nombreApellidos" id="nombreApellidos" class="obligatorio"/>
+                    Nombre y apellidos: <input type="text" name="nombreApellidos" id="nombreApellidos" class="obligatorio" required/>
                     <?php if(!empty($aErrores['nombreApellidos'])){
                         echo "<span class='error'>".$aErrores['nombreApellidos']."</span>";
                     };?><br/>
-                    Fecha de nacimiento: <input type="text" name="nacimiento" id="nacimiento" class="obligatorio"/>
+                    Fecha de nacimiento: <input type="text" name="nacimiento" id="nacimiento" class="obligatorio" required/>
                     <?php if(!empty($aErrores['nacimiento'])){
                         echo "<span class='error'>".$aErrores['nacimiento']."</span>";
                     };?><br/>

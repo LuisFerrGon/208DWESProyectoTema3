@@ -14,50 +14,57 @@
             <?php
             /**
              * @author Luis Ferreras
-             * @version 2024/10/15
+             * @version 2024/10/16
              */
             require_once '../core/231018libreriaValidacion.php';
             $entradaOK=true; // Estado de las respuestas
-            $aErrores=[];// Mensajes de error
+            $aErrores=[
+                'nombreApellidos'=>'',
+                'nacimiento'=>''
+            ];// Mensajes de error
             $aRespuestas=[
-                'nombreApellidos'=>"",
-                'nacimiento'=>""
+                'nombreApellidos'=>'',
+                'nacimiento'=>''
             ];//Respuesas enviadas
             if(isset($_REQUEST['enviar'])){// Se ha enviado el formulario
                 $aErrores['nombreApellidos']=validacionFormularios::comprobarAlfabetico($_REQUEST['nombreApellidos'], 1000, 1, 1);
-                $aErrores['nacimiento']=validacionFormularios::validarFecha($_REQUEST['nacimiento'], '01/01/2024', '01/01/1950', 1);
+                $aErrores['nacimiento']=validacionFormularios::validarFecha(date_format(date_create_from_format("d/m/Y", $_REQUEST['nacimiento']), "Y-m-d"), '01/01/2024', '01/01/1950', 1);
                 //Se llena el array de los mesajes de error
                 foreach ($aErrores as $key => $value) {
                     if($value!=null){
                         $entradaOK=false;
-                        $aRespuestas[$key]=null;
-                    }else{
-                        $aRespuestas[$key]=$value;
                     }
                 }
             }else{
                 $entradaOK=false;
             }
             if($entradaOK){
-                echo"Nombre y apellidos: ".$_REQUEST['nombreApellidos']."<br/>";
-                echo"Fecha de nacimiento: ".$_REQUEST['nacimiento'];
+                foreach ($aRespuestas as $key => $value) {
+                    if(!empty($_REQUEST[$key])){
+                        $aRespuestas[$key]=$_REQUEST[$key];
+                    }
+                }
+                echo"Nombre y apellidos: ".$aRespuestas['nombreApellidos']."<br/>";
+                echo"Fecha de nacimiento: ".$aRespuestas['nacimiento'];
             }else{// No se ha enviado?>
-                <form name="ej24" action="<?php echo $_SERVER['PHP_SELF'];// A si mismo?>" method="post">
+            <form name="ej24" action="<?php echo $_SERVER['PHP_SELF'];// A si mismo?>" method="post" novalidate>
                     Nombre y apellidos:
-                    <input
-                        type="text"
-                        name="nombreApellidos"
-                        id="nombreApellidos"
-                        class="obligatorio"
-                        value=<?php echo $aRespuestas['nombreApellidos']?>
-                    />
+                    <input type="text" name="nombreApellidos" id="nombreApellidos" class="obligatorio" value="<?php echo(isset($_REQUEST['nombreApellidos']) && empty($aErrores['nombreApellidos'])?$_REQUEST['nombreApellidos']:'');?>" required/>
                     <?php
                         if(!empty($aErrores['nombreApellidos'])){
                             echo "<span class='error'>".$aErrores['nombreApellidos']."</span>";
                         };
                     ?><br/>
-                    Fecha de nacimiento: <input type="text" name="nacimiento" id="nacimiento" class="obligatorio" 
-                        value=<?php echo $aRespuestas['nacimiento']?>/>
+                    Fecha de nacimiento: 
+                    <input
+                        type="text"
+                        name="nacimiento" 
+                        id="nacimiento"
+                        class="obligatorio"
+                        placeholder="Día/Mes/Año"
+                        required
+                        value="<?php echo(isset($_REQUEST['nacimiento']) && empty($aErrores['nacimiento'])?(date_format(date_create_from_format("d/m/Y", $_REQUEST['nacimiento']), "d/m/Y")):'')?>"
+                    /><!--En caso de que se pusiera una fecha no existente, la cambie. Ej 52/01/2005 pasa a ser 21/02/2005-->
                     <?php
                         if(!empty($aErrores['nacimiento'])){
                             echo "<span class='error'>".$aErrores['nacimiento']."</span>";
