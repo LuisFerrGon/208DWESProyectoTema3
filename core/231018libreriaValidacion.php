@@ -246,8 +246,8 @@ class validacionFormularios {  //ELIMINA EL METODO VALIDATEDATE Y LO INCLUYE EN 
      * Funcion que compueba si el parametro recibido es una fecha valida.
      * 
      * @param string $fecha Cadena con formato de fecha a comprobar.
-     * @param string $fechaMaxima Fecha maxima que se puede introducir
-     * @param string $fechaMinima Fecha minima que se puede introducir
+     * @param string $fechaMaxima Fecha maxima que se puede introducir mes/dia/año
+     * @param string $fechaMinima Fecha minima que se puede introducir mes/dia/año
      * @param boolean $obligatorio Valor booleano indicado mediante 1, si es obligatorio o 0 si no lo es.
      * @return null|string Devuelve null si es correcto o un mensaje de error en caso de que lo haya.
      */

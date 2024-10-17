@@ -14,14 +14,23 @@
             <?php
             /**
              * @author Luis Ferreras
-             * @version 2024/10/15
+             * @version 2024/10/17
              */
             require_once '../core/231018libreriaValidacion.php';
+            $hoy=new Datetime('now');
             $entradaOK=true; // Estado de las respuestas
-            $aErrores=[];// Mensajes de error
+            $aErrores=[
+                'nombreApellidos'=>null,
+                'nacimiento'=>null,
+                'clima'=>null
+            ];// Mensajes de error
             if(isset($_REQUEST['enviar'])){// Se ha enviado el formulario
+                $clima=$_REQUEST['clima'];
                 $aErrores['nombreApellidos']=validacionFormularios::comprobarAlfabetico($_REQUEST['nombreApellidos'], 1000, 1, 1);
                 $aErrores['nacimiento']=validacionFormularios::validarFecha($_REQUEST['nacimiento'], '01/01/2024', '01/01/1950', 1);
+                if(!empty($clima)){
+                    $aErrores['clima']= validacionFormularios::comprobarAlfabetico($clima);
+                }
                 //Se llena el array de los mesajes de error
                 foreach ($aErrores as $value) {
                     if($value!= null){
@@ -33,9 +42,13 @@
             }
             if($entradaOK){
                 echo"Nombre y apellidos: ".$_REQUEST['nombreApellidos']."<br/>";
-                echo"Fecha de naciemiento: ".$_REQUEST['nacimiento'];
+                echo"Fecha de naciemiento: ".$_REQUEST['nacimiento']."<br/>";
+                if(!empty($clima)){
+                    echo"Clima: ".$clima."<br/>";
+                }
+                echo"Fecha actual: ".$hoy->format('Y-m-d');
             }else{// No se ha enviado?>
-                <form name="ej23" action="<?php echo $_SERVER['PHP_SELF'];// A si mismo?>" method="post">
+                <form name="ej23" action="<?php echo $_SERVER['PHP_SELF'];// A si mismo?>" method="post" novalidate>
                     Nombre y apellidos: <input type="text" name="nombreApellidos" id="nombreApellidos" class="obligatorio" required/>
                     <?php if(!empty($aErrores['nombreApellidos'])){
                         echo "<span class='error'>".$aErrores['nombreApellidos']."</span>";
@@ -44,6 +57,11 @@
                     <?php if(!empty($aErrores['nacimiento'])){
                         echo "<span class='error'>".$aErrores['nacimiento']."</span>";
                     };?><br/>
+                    Clima: <input type="text" name="clima" id="clima" class="opcional"/>
+                    <?php if(!empty($aErrores['clima'])){
+                        echo "<span class='error'>".$aErrores['clima']."</span>";
+                    };?><br/>
+                    Fecha actual: <input type="text" name="hoy" id="hoy" class="invariable" value="<?php echo ($hoy->format('Y-m-d'));?>" disabled/><br/>
                     <input type="submit" name="enviar" id="enviar">
                 </form><?php
             };

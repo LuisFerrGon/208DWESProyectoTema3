@@ -27,6 +27,11 @@ a:link, a:visited, a:hover, a:active{
 .obligatorio{
     background-color: yellow;
 }
+.opcional{
+    background-color: white;
+}.invariable{
+    background-color: lightgray;
+}
 .error{
     color: red;
 }
@@ -36,7 +41,5 @@ footer{
     border: 2.5px solid var(--color5);
     display: flex;
     justify-content: space-evenly;
-    position: absolute;
-    bottom: 0;
     width: 100%;
 }
