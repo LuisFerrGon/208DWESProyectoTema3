@@ -4,11 +4,11 @@
     <head>
         <meta charset="UTF-8">
         <title>Luis Ferreras</title>
-        <link rel="stylesheet" type="text/css" href="webroot/css/estilo.css">
+        <link rel="stylesheet" type="text/css" href="../webroot/estilosEjercicios.css">
     </head>
     <body>
         <header>
-            <h1>Ejercicio 21 Formulario</h1>
+            <h1>Ejercicio 22 Formulario</h1>
         </header>
         <main>
             <?php

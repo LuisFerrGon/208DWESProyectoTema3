@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Luis Ferreras</title>
-        <link rel="stylesheet" type="text/css" href="webroot/css/estilo.css">
+        <link rel="stylesheet" type="text/css" href="../webroot/estilosEjercicios.css">
     </head>
     <body>
         <header>

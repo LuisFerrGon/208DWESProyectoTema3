@@ -14,9 +14,6 @@
 a{
     text-decoration: none;
 }
-a:link, a:visited, a:hover, a:active{
-    color: var(--color3);
-}
 h1{
     text-align: center;
     color: var(--color5);
@@ -24,30 +21,19 @@ h1{
     border-radius: 50px;
     border: 2.5px solid var(--color6);
 }
-h2{
+a:link, a:visited, a:hover, a:active{
     color: var(--color3);
-    text-align: center;
 }
-main{
-    a:link, a:visited, a:hover, a:active{
-        color: var(--color3);
-    } 
+.obligatorio{
+    background-color: yellow;
 }
-table{
-    width: 100%;
-    border-collapse: collapse;
-    border: 1px solid black;
+.opcional{
+    background-color: white;
+}.invariable{
+    background-color: lightgray;
 }
-td{
-    border: 1px solid black;
-}
-th{
-    border: 1px solid black;
-    padding: 5px;
-    color: var(--color2);
-}
-.eje, .mos{
-    padding: 2.5px 5px;
+.error{
+    color: red;
 }
 footer{
     background-color: white;
