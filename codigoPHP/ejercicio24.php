@@ -27,13 +27,17 @@
             $aErrores=[
                 'nombreApellidos'=>null,
                 'nacimiento'=>null,
-                'clima'=>null
+                'clima'=>null,
+                'contrasena'=>null,
+                'dni'=>null
             ];
             //Respuesas enviadas
             $aRespuestas=[
                 'nombreApellidos'=>null,
                 'nacimiento'=>null,
-                'clima'=>null
+                'clima'=>null,
+                'contrasena'=>null,
+                'dni'=>null
             ];
             // Se ha dado a enviar
             if(isset($_REQUEST['enviar'])){
@@ -41,6 +45,8 @@
                 $aErrores['nombreApellidos']=validacionFormularios::comprobarAlfabetico($_REQUEST['nombreApellidos'], 1000, 1, OBLIGATORIO);
                 $aErrores['nacimiento']=validacionFormularios::validarFecha($_REQUEST['nacimiento'], $hoy->format('m/d/Y'), '01/01/1970', OBLIGATORIO);
                 $aErrores['clima']= validacionFormularios::comprobarAlfabetico($_REQUEST['clima']);
+                $aErrores['contrasena']= validacionFormularios::validarPassword($_REQUEST['contrasena'], 16, 2, 2, OBLIGATORIO);
+                $aErrores['dni']= validacionFormularios::validarDni($_REQUEST['dni']);
                 //Se comprueban las respuestas
                 foreach ($aErrores as $key => $value) {
                     if($value!=null){
@@ -58,11 +64,15 @@
                 }
                 echo"Nombre y apellidos: ".$aRespuestas['nombreApellidos']."<br/>";
                 echo"Fecha de nacimiento: ".$aRespuestas['nacimiento']."<br/>";
-                //Si esta vaio no se pone
+                //Si esta vacio no se pone
                 if(!empty($aRespuestas['clima'])){
                     echo"Clima: ".$aRespuestas['clima']."<br/>";
-                }
-                echo"Fecha actual: ".$hoy->format('Y-m-d');
+                };
+                echo"Contraseña: ".$aRespuestas['contrasena']."<br>";
+                if(!empty($aRespuestas['dni'])){
+                    echo"DNI: ".$aRespuestas['dni']."<br/>";
+                };
+                echo"Fecha actual: ".$hoy->format('Y-m-d')."<br>";
             }else{// No se ha enviado?>
                 <form name="ej24" action="<?php echo $_SERVER['PHP_SELF'];// A si mismo?>" method="post" novalidate>
                     <table>
@@ -78,14 +88,28 @@
                                 <td>Fecha de nacimiento:</td>
                                 <td><input type="date" name="nacimiento" id="nacimiento" class="obligatorio" value="<?php echo(isset($_REQUEST['nacimiento']) && empty($aErrores['nacimiento'])?$_REQUEST['nacimiento']:'')?>" required/></td>
                                 <?php if(!empty($aErrores['nacimiento'])){
-                                    echo "<span class='error'>".$aErrores['nacimiento']."</span>";
+                                    echo "<td class='error'>".$aErrores['nacimiento']."</td>";
                                 }?>
                             </tr>
                             <tr>
                                 <td>Clima:</td>
                                 <td><input type="text" name="clima" id="clima" class="opcional" value="<?php echo(isset($_REQUEST['clima']) && empty($aErrores['clima'])?$_REQUEST['clima']:'');?>"/></td>
                                 <?php if(!empty($aErrores['clima'])){
-                                    echo "<span class='error'>".$aErrores['clima']."</span>";
+                                    echo "<td class='error'>".$aErrores['clima']."</td>";
+                                }?>
+                            </tr>
+                            <tr>
+                                <td>Contraseña:</td>
+                                <td><input type="password" name="contrasena" id="contrasena" class="obligatorio" value="<?php echo(isset($_REQUEST['contrasena']) && empty($aErrores['contrasena'])?$_REQUEST['contrasena']:'');?>" required/></td>
+                                <?php if(!empty($aErrores['contrasena'])){
+                                    echo "<td class='error'>".$aErrores['contrasena']."</td>";
+                                }?>
+                            </tr>
+                            <tr>
+                                <td>DNI:</td>
+                                <td><input type="text" name="dni" id="dni" class="opcional" value="<?php echo(isset($_REQUEST['dni']) && empty($aErrores['dni'])?$_REQUEST['dni']:'');?>"/></td>
+                                <?php if(!empty($aErrores['dni'])){
+                                    echo "<td class='error'>".$aErrores['dni']."</td>";
                                 }?>
                             </tr>
                             <tr>
@@ -98,10 +122,7 @@
                         </tbody>
                     </table>
                 </form>
-            <?php
-            
-                                }
-            ?>
+            <?php }?>
         </main>
         <footer>
             <a href="../../">Luis Ferreras</a>
