@@ -16,24 +16,32 @@
              * @author Luis Ferreras
              * @version 2024/10/17
              */
+            //Librería de validación
             require_once '../core/231018libreriaValidacion.php';
+            //Definición de variables
+            define("OBLIGATORIO", 1);
             $hoy=new Datetime('now');
-            $entradaOK=true; // Estado de las respuestas
+            // Estado de las respuestas
+            $entradaOK=true;
+            // Mensajes de error
             $aErrores=[
                 'nombreApellidos'=>null,
                 'nacimiento'=>null,
                 'clima'=>null
-            ];// Mensajes de error
+            ];
+            //Respuesas enviadas
             $aRespuestas=[
                 'nombreApellidos'=>null,
                 'nacimiento'=>null,
                 'clima'=>null
-            ];//Respuesas enviadas
-            if(isset($_REQUEST['enviar'])){// Se ha enviado el formulario
-                $aErrores['nombreApellidos']=validacionFormularios::comprobarAlfabetico($_REQUEST['nombreApellidos'], 1000, 1, 1);
-                $aErrores['nacimiento']=validacionFormularios::validarFecha(date_format(date_create($_REQUEST['nacimiento']), "Y-m-d"), $hoy->format('m/d/Y'), '01/01/1970', 1);
-                $aErrores['clima']= validacionFormularios::comprobarAlfabetico($_REQUEST['clima']);
+            ];
+            // Se ha dado a enviar
+            if(isset($_REQUEST['enviar'])){
                 //Se llena el array de los mesajes de error
+                $aErrores['nombreApellidos']=validacionFormularios::comprobarAlfabetico($_REQUEST['nombreApellidos'], 1000, 1, OBLIGATORIO);
+                $aErrores['nacimiento']=validacionFormularios::validarFecha($_REQUEST['nacimiento'], $hoy->format('m/d/Y'), '01/01/1970', OBLIGATORIO);
+                $aErrores['clima']= validacionFormularios::comprobarAlfabetico($_REQUEST['clima']);
+                //Se comprueban las respuestas
                 foreach ($aErrores as $key => $value) {
                     if($value!=null){
                         $entradaOK=false;
@@ -42,46 +50,61 @@
             }else{
                 $entradaOK=false;
             }
+            //Se ha enviado y las respuestas son correctas
             if($entradaOK){
+                //Se llena el array de respuestas
                 foreach ($aRespuestas as $key => $value) {
-                    if(!empty($_REQUEST[$key])){
-                        $aRespuestas[$key]=$_REQUEST[$key];
-                    }
+                    $aRespuestas[$key]=$_REQUEST[$key];
                 }
                 echo"Nombre y apellidos: ".$aRespuestas['nombreApellidos']."<br/>";
                 echo"Fecha de nacimiento: ".$aRespuestas['nacimiento']."<br/>";
+                //Si esta vaio no se pone
                 if(!empty($aRespuestas['clima'])){
                     echo"Clima: ".$aRespuestas['clima']."<br/>";
                 }
                 echo"Fecha actual: ".$hoy->format('Y-m-d');
             }else{// No se ha enviado?>
-            <form name="ej24" action="<?php echo $_SERVER['PHP_SELF'];// A si mismo?>" method="post" novalidate>
-                    Nombre y apellidos:
-                    <input type="text" name="nombreApellidos" id="nombreApellidos" class="obligatorio" value="<?php echo(isset($_REQUEST['nombreApellidos']) && empty($aErrores['nombreApellidos'])?$_REQUEST['nombreApellidos']:'');?>" required/>
-                    <?php
-                        if(!empty($aErrores['nombreApellidos'])){
-                            echo "<span class='error'>".$aErrores['nombreApellidos']."</span>";
-                        };
-                    ?><br/>
-                    Fecha de nacimiento: 
-                    <input type="date" name="nacimiento" id="nacimiento" class="obligatorio" value="<?php echo(isset($_REQUEST['nacimiento']) && empty($aErrores['nacimiento'])?$_REQUEST['nacimiento']:'')?>" required/>
-                    <?php
-                        if(!empty($aErrores['nacimiento'])){
-                            echo "<span class='error'>".$aErrores['nacimiento']."</span>";
-                        };
-                    ?><br/>
-                    Clima: <input type="text" name="clima" id="clima" class="opcional" value="<?php echo(isset($_REQUEST['clima']) && empty($aErrores['clima'])?$_REQUEST['clima']:'');?>"/>
-                    <?php if(!empty($aErrores['clima'])){
-                        echo "<span class='error'>".$aErrores['clima']."</span>";
-                    };?><br/>
-                    Fecha actual: <input type="text" name="hoy" id="hoy" class="invariable" value="<?php echo ($hoy->format('Y-m-d'));?>" disabled/><br/>
-                    <input type="submit" name="enviar" id="enviar">
-                </form><?php
-            };
+                <form name="ej24" action="<?php echo $_SERVER['PHP_SELF'];// A si mismo?>" method="post" novalidate>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>Nombre y apellidos:</td>
+                                <td><input type="text" name="nombreApellidos" id="nombreApellidos" class="obligatorio" value="<?php echo(isset($_REQUEST['nombreApellidos']) && empty($aErrores['nombreApellidos'])?$_REQUEST['nombreApellidos']:'');?>" required/></td>
+                                <?php if(!empty($aErrores['nombreApellidos'])){
+                                    echo "<td class='error'>".$aErrores['nombreApellidos']."</td>";
+                                }?>
+                            </tr>
+                            <tr>
+                                <td>Fecha de nacimiento:</td>
+                                <td><input type="date" name="nacimiento" id="nacimiento" class="obligatorio" value="<?php echo(isset($_REQUEST['nacimiento']) && empty($aErrores['nacimiento'])?$_REQUEST['nacimiento']:'')?>" required/></td>
+                                <?php if(!empty($aErrores['nacimiento'])){
+                                    echo "<span class='error'>".$aErrores['nacimiento']."</span>";
+                                }?>
+                            </tr>
+                            <tr>
+                                <td>Clima:</td>
+                                <td><input type="text" name="clima" id="clima" class="opcional" value="<?php echo(isset($_REQUEST['clima']) && empty($aErrores['clima'])?$_REQUEST['clima']:'');?>"/></td>
+                                <?php if(!empty($aErrores['clima'])){
+                                    echo "<span class='error'>".$aErrores['clima']."</span>";
+                                }?>
+                            </tr>
+                            <tr>
+                                <td>Fecha actual:</td>
+                                <td><input type="text" name="hoy" id="hoy" class="invariable" value="<?php echo ($hoy->format('Y-m-d'));?>" disabled/><br/></td>
+                            </tr>
+                            <tr>
+                                <td><input type="submit" name="enviar" id="enviar"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            <?php
+            
+                                }
             ?>
         </main>
         <footer>
-            <a href="../../index.php">Luis Ferreras</a>
+            <a href="../../">Luis Ferreras</a>
             <a href="../../208DWESProyectoDWES/indexProyectoDWES.php">DWES</a>
             <a href="../indexProyectoTema3.php">Tema 3</a>
             <a href="https://github.com/LuisFerrGon/208DWESProyectoTema3">GitHub</a>
