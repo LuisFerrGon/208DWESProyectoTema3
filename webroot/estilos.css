@@ -55,5 +55,7 @@ footer{
     border: 2.5px solid var(--color5);
     display: flex;
     justify-content: space-evenly;
+    position: fixed;
+    bottom: 0;
     width: 100%;
 }

@@ -13,6 +13,7 @@
         <main>
             <?php
                 show_source("../codigoPHP/ejercicio24.php");
+                echo "<div style='height: 30px'></div>";
             ?>
         </main>
         <footer>

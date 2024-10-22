@@ -8,7 +8,7 @@
     </head>
     <body>
         <header>
-            <h1>Ejercicio 24</h1>
+            <h1>Ejercicio 27</h1>
         </header>
         <main>
             <?php
@@ -24,33 +24,25 @@
             // Estado de las respuestas
             $entradaOK=true;
             // Mensajes de error
+            //text, date, radio, number, datalist, textarea
             $aErrores=[
                 'nombreApellidos'=>null,
                 'nacimiento'=>null,
-                'clima'=>null,
-                'contrasena'=>null,
-                'dni'=>null,
-                'numFavorito'=>null
+                'curso'=>null
             ];
             //Respuesas enviadas
             $aRespuestas=[
                 'nombreApellidos'=>null,
                 'nacimiento'=>null,
-                'clima'=>null,
-                'contrasena'=>null,
-                'dni'=>null,
-                'numFavorito'=>null,
-                'hoy'=>null
+                
+                'curso'=>null
             ];
             // Se ha dado a enviar
             if(isset($_REQUEST['enviar'])){
                 //Se llena el array de los mesajes de error
                 $aErrores['nombreApellidos']=validacionFormularios::comprobarAlfabetico($_REQUEST['nombreApellidos'], 1000, 1, OBLIGATORIO);
                 $aErrores['nacimiento']=validacionFormularios::validarFecha($_REQUEST['nacimiento'], $oHoy->format('m/d/Y'), '01/01/1970', OBLIGATORIO);
-                $aErrores['clima']= validacionFormularios::comprobarAlfabetico($_REQUEST['clima']);
-                $aErrores['contrasena']= validacionFormularios::validarPassword($_REQUEST['contrasena'], 16, 2, 2, OBLIGATORIO);
-                $aErrores['numFavorito']= validacionFormularios::comprobarEntero($_REQUEST['numFavorito'], PHP_INT_MAX, -PHP_INT_MAX, OBLIGATORIO);
-                $aErrores['dni']= validacionFormularios::validarDni($_REQUEST['dni']);
+                $aErrores['curso']= validacionFormularios::comprobarEntero($_REQUEST['curso'], PHP_INT_MAX, -PHP_INT_MAX, OBLIGATORIO);
                 //Se comprueban las respuestas
                 foreach ($aErrores as $key => $value) {
                     if($value!=null){
@@ -67,27 +59,14 @@
                 $aRespuestas=[
                     'nombreApellidos'=>$_REQUEST['nombreApellidos'],
                     'nacimiento'=>$_REQUEST['nacimiento'],
-                    'clima'=>$_REQUEST['clima'],
-                    'contrasena'=>$_REQUEST['contrasena'],
-                    'dni'=>$_REQUEST['dni'],
-                    'numFavorito'=>$_REQUEST['numFavorito'],
-                    'hoy'=>$oHoy->format('Y-m-d')
+                    'curso'=>$_REQUEST['curso']
                 ];
                 //Se muestran las respuestas
                 echo"Nombre y apellidos: ".$aRespuestas['nombreApellidos']."<br/>";
                 echo"Fecha de nacimiento: ".$aRespuestas['nacimiento']."<br/>";
-                //Si esta vacio no se pone
-                if(!empty($aRespuestas['clima'])){
-                    echo"Clima: ".$aRespuestas['clima']."<br/>";
-                };
-                echo"Contraseña: ".$aRespuestas['contrasena']."<br>";
-                if(!empty($aRespuestas['dni'])){
-                    echo"DNI: ".$aRespuestas['dni']."<br/>";
-                };
-                echo"Número favorito: ".$aRespuestas['numFavorito']."<br>";
-                echo"Fecha actual: ".$aRespuestas['hoy']."<br>";
+                echo"Número favorito: ".$aRespuestas['curso']."<br>";
             }else{// No se ha enviado?>
-                <form name="ej24" action="<?php echo $_SERVER['PHP_SELF'];// A si mismo?>" method="post" novalidate>
+                <form name="ej27" action="<?php echo $_SERVER['PHP_SELF'];// A si mismo?>" method="post" novalidate>
                     <table>
                         <tbody>
                             <tr>
@@ -105,36 +84,49 @@
                                 }?>
                             </tr>
                             <tr>
-                                <td>Clima:</td>
-                                <td><input type="text" name="clima" id="clima" class="opcional" value="<?php echo(isset($_REQUEST['clima'])?$_REQUEST['clima']:'');?>"/></td>
-                                <?php if(!empty($aErrores['clima'])){
-                                    echo "<td class='error'>".$aErrores['clima']."</td>";
-                                }?>
-                            </tr>
-                            <tr>
-                                <td>Contraseña:</td>
-                                <td><input type="password" name="contrasena" id="contrasena" class="obligatorio" value="<?php echo(isset($_REQUEST['contrasena'])?$_REQUEST['contrasena']:'');?>" required/></td>
-                                <?php if(!empty($aErrores['contrasena'])){
-                                    echo "<td class='error'>".$aErrores['contrasena']."</td>";
-                                }?>
-                            </tr>
-                            <tr>
-                                <td>DNI:</td>
-                                <td><input type="text" name="dni" id="dni" class="opcional" value="<?php echo(isset($_REQUEST['dni'])?$_REQUEST['dni']:'');?>"/></td>
-                                <?php if(!empty($aErrores['dni'])){
-                                    echo "<td class='error'>".$aErrores['dni']."</td>";
+                                <td>¿Cómo te sientes hoy?</td>
+                                <td>
+                                    <input type="radio" id="muy_mal" name="fav_language" value="muy_mal" class="obligatorio" required>
+                                    <label for="muy_mal">MUY MAL</label><br>
+                                    <input type="radio" id="mal" name="fav_language" value="mal" class="obligatorio" required>
+                                    <label for="mal">MAL</label><br>
+                                    <input type="radio" id="regular" name="fav_language" value="regular" class="obligatorio" required checked>
+                                    <label for="regular">REGULAR</label><br>
+                                    <input type="radio" id="bien" name="fav_language" value="bien" class="obligatorio" required>
+                                    <label for="bien">BIEN</label><br>
+                                    <input type="radio" id="muy_bien" name="fav_language" value="muy_bien" class="obligatorio" required>
+                                    <label for="muy_bien">MUY BIEN</label>
+                                </td>
+                                <?php if(!empty($aErrores['curso'])){
+                                    echo "<td class='error'>".$aErrores['curso']."</td>";
                                 }?>
                             </tr>
                             <tr>
                                 <td>Número favorito:</td>
-                                <td><input type="number" name="numFavorito" id="numFavorito" class="obligatorio" value="<?php echo(isset($_REQUEST['numFavorito'])?$_REQUEST['numFavorito']:'');?>" required/></td>
-                                <?php if(!empty($aErrores['numFavorito'])){
-                                    echo "<td class='error'>".$aErrores['numFavorito']."</td>";
+                                <td><input type="number" name="curso" id="curso" class="obligatorio" value="<?php echo(isset($_REQUEST['curso'])?$_REQUEST['curso']:'');?>" required/></td>
+                                <?php if(!empty($aErrores['curso'])){
+                                    echo "<td class='error'>".$aErrores['curso']."</td>";
                                 }?>
                             </tr>
                             <tr>
-                                <td>Fecha actual:</td>
-                                <td><input type="text" name="hoy" id="hoy" class="invariable" value="<?php echo ($oHoy->format('Y-m-d'));?>" disabled/><br/></td>
+                                <td>¿Cómo te sientes hoy?</td>
+                                <td>
+                                    <input list="opciones" id="navidad" name="navidad">
+                                    <datalist id="opciones">
+                                        <option value="Ni idea">
+                                        <option value="Con la familia">
+                                        <option value="De fiesta">
+                                        <option value="Trabajando">
+                                        <option value="Estuiando DWES">
+                                    </datalist>
+                                </td>
+                                <?php if(!empty($aErrores['curso'])){
+                                    echo "<td class='error'>".$aErrores['curso']."</td>";
+                                }?>
+                            </tr>
+                            <tr>
+                                <td>¿Cómo te sientes hoy?</td>
+                                <td><textarea></textarea></td>
                             </tr>
                             <tr>
                                 <td></td>

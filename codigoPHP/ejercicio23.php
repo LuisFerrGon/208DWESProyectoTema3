@@ -17,7 +17,7 @@
              * @version 2024/10/17
              */
             require_once '../core/231018libreriaValidacion.php';
-            $hoy=new Datetime('now');
+            $oHoy=new Datetime('now');
             $entradaOK=true; // Estado de las respuestas
             $aErrores=[
                 'nombreApellidos'=>null,
@@ -46,7 +46,7 @@
                 if(!empty($clima)){
                     echo"Clima: ".$clima."<br/>";
                 }
-                echo"Fecha actual: ".$hoy->format('Y-m-d');
+                echo"Fecha actual: ".$oHoy->format('Y-m-d');
             }else{// No se ha enviado?>
                 <form name="ej23" action="<?php echo $_SERVER['PHP_SELF'];// A si mismo?>" method="post" novalidate>
                     Nombre y apellidos: <input type="text" name="nombreApellidos" id="nombreApellidos" class="obligatorio" required/>
@@ -61,7 +61,7 @@
                     <?php if(!empty($aErrores['clima'])){
                         echo "<span class='error'>".$aErrores['clima']."</span>";
                     };?><br/>
-                    Fecha actual: <input type="text" name="hoy" id="hoy" class="invariable" value="<?php echo ($hoy->format('Y-m-d'));?>" disabled/><br/>
+                    Fecha actual: <input type="text" name="hoy" id="hoy" class="invariable" value="<?php echo ($oHoy->format('Y-m-d'));?>" disabled/><br/>
                     <input type="submit" name="enviar" id="enviar">
                 </form><?php
             };
