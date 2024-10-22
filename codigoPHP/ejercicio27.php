@@ -14,7 +14,7 @@
             <?php
             /**
              * @author Luis Ferreras
-             * @version 2024/10/17
+             * @version 2024/10/22
              */
             //Librería de validación
             require_once '../core/231018libreriaValidacion.php';
@@ -28,21 +28,29 @@
             $aErrores=[
                 'nombreApellidos'=>null,
                 'nacimiento'=>null,
-                'curso'=>null
+                'sentimiento'=>null,
+                'curso'=>null,
+                'navidad'=>null,
+                'texto'=>null
             ];
             //Respuesas enviadas
             $aRespuestas=[
                 'nombreApellidos'=>null,
                 'nacimiento'=>null,
-                
-                'curso'=>null
+                'sentimiento'=>null,
+                'curso'=>null,
+                'navidad'=>null,
+                'texto'=>null
             ];
             // Se ha dado a enviar
             if(isset($_REQUEST['enviar'])){
                 //Se llena el array de los mesajes de error
                 $aErrores['nombreApellidos']=validacionFormularios::comprobarAlfabetico($_REQUEST['nombreApellidos'], 1000, 1, OBLIGATORIO);
                 $aErrores['nacimiento']=validacionFormularios::validarFecha($_REQUEST['nacimiento'], $oHoy->format('m/d/Y'), '01/01/1970', OBLIGATORIO);
-                $aErrores['curso']= validacionFormularios::comprobarEntero($_REQUEST['curso'], PHP_INT_MAX, -PHP_INT_MAX, OBLIGATORIO);
+                $aErrores['sentimiento']=validacionFormularios::validarElementoEnLista($_REQUEST['sentimiento'], ['muy_mal','mal','regular','bien','muy_bien']);
+                $aErrores['curso']= validacionFormularios::comprobarEntero($_REQUEST['curso'], 10, 1, OBLIGATORIO);
+                $aErrores['navidad']=validacionFormularios::validarElementoEnLista($_REQUEST['navidad'], ['Ni idea','Con la familia','De fiesta','Trabajando','Estuiando DWES']);
+                $aErrores['texto']=validacionFormularios::comprobarAlfabetico($_REQUEST['texto'], 1000, 1, OBLIGATORIO);
                 //Se comprueban las respuestas
                 foreach ($aErrores as $key => $value) {
                     if($value!=null){
@@ -59,12 +67,22 @@
                 $aRespuestas=[
                     'nombreApellidos'=>$_REQUEST['nombreApellidos'],
                     'nacimiento'=>$_REQUEST['nacimiento'],
-                    'curso'=>$_REQUEST['curso']
+                    'sentimiento'=>$_REQUEST['sentimiento'],
+                    'curso'=>$_REQUEST['curso'],
+                    'navidad'=>$_REQUEST['navidad'],
+                    'texto'=>$_REQUEST['texto']
                 ];
                 //Se muestran las respuestas
-                echo"Nombre y apellidos: ".$aRespuestas['nombreApellidos']."<br/>";
-                echo"Fecha de nacimiento: ".$aRespuestas['nacimiento']."<br/>";
-                echo"Número favorito: ".$aRespuestas['curso']."<br>";
+                echo(
+                    "Hoy ".$oHoy->format('d \d\e m \d\e\l Y').
+                    " a las ".$oHoy->format('H:i:s').
+                    " D.".$aRespuestas['nombreApellidos'].
+                    " nacido hace ".$oHoy->diff(Date($aRespuestas['nacimiento']))->y.
+                    " años se siente ".$aRespuestas['sentimiento'].
+                    ". Valora su curso actual con ".$aRespuestas['curso'].
+                    "sobre 10. Estas navidades las dedicará a ".$aRespuestas['navidad'].
+                    "Y, además, opina que:".$aRespuestas['texto']
+                    );
             }else{// No se ha enviado?>
                 <form name="ej27" action="<?php echo $_SERVER['PHP_SELF'];// A si mismo?>" method="post" novalidate>
                     <table>
@@ -86,15 +104,15 @@
                             <tr>
                                 <td>¿Cómo te sientes hoy?</td>
                                 <td>
-                                    <input type="radio" id="muy_mal" name="fav_language" value="muy_mal" class="obligatorio" required>
+                                    <input type="radio" id="sentimiento" name="sentimiento" value="muy_mal" class="obligatorio" required <?php echo((isset($_REQUEST['sentimiento']) && $_REQUEST['sentimiento']=='muy_mal')?'checked':null)?>>
                                     <label for="muy_mal">MUY MAL</label><br>
-                                    <input type="radio" id="mal" name="fav_language" value="mal" class="obligatorio" required>
+                                    <input type="radio" id="sentimiento" name="sentimiento" value="mal" class="obligatorio" required <?php echo((isset($_REQUEST['sentimiento']) && $_REQUEST['sentimiento']=='mal')?'checked':null)?>>
                                     <label for="mal">MAL</label><br>
-                                    <input type="radio" id="regular" name="fav_language" value="regular" class="obligatorio" required checked>
+                                    <input type="radio" id="sentimiento" name="sentimiento" value="regular" class="obligatorio" required <?php echo((isset($_REQUEST['sentimiento']) && $_REQUEST['sentimiento']=='regular')?'checked':null)?>>
                                     <label for="regular">REGULAR</label><br>
-                                    <input type="radio" id="bien" name="fav_language" value="bien" class="obligatorio" required>
+                                    <input type="radio" id="sentimiento" name="sentimiento" value="bien" class="obligatorio" required <?php echo((isset($_REQUEST['sentimiento']) && $_REQUEST['sentimiento']=='bien')?'checked':null)?>>
                                     <label for="bien">BIEN</label><br>
-                                    <input type="radio" id="muy_bien" name="fav_language" value="muy_bien" class="obligatorio" required>
+                                    <input type="radio" id="sentimiento" name="sentimiento" value="muy_bien" class="obligatorio" required <?php echo((isset($_REQUEST['sentimiento']) && $_REQUEST['sentimiento']=='muy_bien')?'checked':null)?>>
                                     <label for="muy_bien">MUY BIEN</label>
                                 </td>
                                 <?php if(!empty($aErrores['curso'])){
@@ -102,16 +120,16 @@
                                 }?>
                             </tr>
                             <tr>
-                                <td>Número favorito:</td>
-                                <td><input type="number" name="curso" id="curso" class="obligatorio" value="<?php echo(isset($_REQUEST['curso'])?$_REQUEST['curso']:'');?>" required/></td>
+                                <td>¿Cómo va el curso?</td>
+                                <td><input type="number" name="curso" id="curso" class="obligatorio" value="<?php echo(isset($_REQUEST['curso'])?$_REQUEST['curso']:'');?>" placeholder="1-10" required/></td>
                                 <?php if(!empty($aErrores['curso'])){
                                     echo "<td class='error'>".$aErrores['curso']."</td>";
                                 }?>
                             </tr>
                             <tr>
-                                <td>¿Cómo te sientes hoy?</td>
+                                <td>¿Cómo se presentan las vacaciones de navidad?</td>
                                 <td>
-                                    <input list="opciones" id="navidad" name="navidad">
+                                    <input list="opciones" id="navidad" name="navidad" class="obligatorio" value="<?php echo(isset($_REQUEST['navidad'])?$_REQUEST['navidad']:'');?>"required>
                                     <datalist id="opciones">
                                         <option value="Ni idea">
                                         <option value="Con la familia">
@@ -125,8 +143,8 @@
                                 }?>
                             </tr>
                             <tr>
-                                <td>¿Cómo te sientes hoy?</td>
-                                <td><textarea></textarea></td>
+                                <td>Describe brevemente tu estado de ánimo</td>
+                                <td colspan="2"><textarea id="texto" name="texto" class="obligatorio" required></textarea></td>
                             </tr>
                             <tr>
                                 <td></td>

@@ -14,7 +14,7 @@
             <?php
             /**
              * @author Luis Ferreras
-             * @version 2024/10/17
+             * @version 2024/10/22
              */
             //Librería de validación
             require_once '../core/231018libreriaValidacion.php';
