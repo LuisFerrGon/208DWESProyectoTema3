@@ -5,6 +5,21 @@
         <meta charset="UTF-8">
         <title>Luis Ferreras</title>
         <link rel="stylesheet" type="text/css" href="../webroot/estilosEjercicios.css">
+        <style>
+            table{
+                margin: 5px auto;
+                border: 0.5px solid lightgrey;
+                border-radius: 5px;
+                background-color: #f0f0f5;
+            }
+            div{
+                width: fit-content;
+                margin: 5px auto;
+                border: 0.5px solid lightgrey;
+                border-radius: 5px;
+                background-color: #f0f0f5;
+            }
+        </style>
     </head>
     <body>
         <header>
@@ -20,7 +35,7 @@
             require_once '../core/231018libreriaValidacion.php';
             //Definición de variables
             define("OBLIGATORIO", 1);
-            $oHoy=new Datetime('now');
+            $oHoy=new DateTime('now');
             // Estado de las respuestas
             $entradaOK=true;
             // Mensajes de error
@@ -47,10 +62,9 @@
                 //Se llena el array de los mesajes de error
                 $aErrores['nombreApellidos']=validacionFormularios::comprobarAlfabetico($_REQUEST['nombreApellidos'], 1000, 1, OBLIGATORIO);
                 $aErrores['nacimiento']=validacionFormularios::validarFecha($_REQUEST['nacimiento'], $oHoy->format('m/d/Y'), '01/01/1970', OBLIGATORIO);
-                $aErrores['sentimiento']=validacionFormularios::validarElementoEnLista($_REQUEST['sentimiento'], ['muy_mal','mal','regular','bien','muy_bien']);
                 $aErrores['curso']= validacionFormularios::comprobarEntero($_REQUEST['curso'], 10, 1, OBLIGATORIO);
-                $aErrores['navidad']=validacionFormularios::validarElementoEnLista($_REQUEST['navidad'], ['Ni idea','Con la familia','De fiesta','Trabajando','Estuiando DWES']);
-                $aErrores['texto']=validacionFormularios::comprobarAlfabetico($_REQUEST['texto'], 1000, 1, OBLIGATORIO);
+                $aErrores['navidad']=validacionFormularios::validarElementoEnLista($_REQUEST['navidad'], ['Ni idea','Con la familia','De fiesta','Trabajando','Estudiando DWES']);
+                $aErrores['texto']=validacionFormularios::comprobarAlfaNumerico($_REQUEST['texto'], 1000, 1, OBLIGATORIO);
                 //Se comprueban las respuestas
                 foreach ($aErrores as $key => $value) {
                     if($value!=null){
@@ -66,7 +80,7 @@
                 //Se llena el array de respuestas
                 $aRespuestas=[
                     'nombreApellidos'=>$_REQUEST['nombreApellidos'],
-                    'nacimiento'=>$_REQUEST['nacimiento'],
+                    'nacimiento'=>date_create($_REQUEST['nacimiento']),
                     'sentimiento'=>$_REQUEST['sentimiento'],
                     'curso'=>$_REQUEST['curso'],
                     'navidad'=>$_REQUEST['navidad'],
@@ -74,14 +88,14 @@
                 ];
                 //Se muestran las respuestas
                 echo(
-                    "Hoy ".$oHoy->format('d \d\e m \d\e\l Y').
+                    "<div>Hoy ".$oHoy->format('d \d\e m \d\e\l Y').
                     " a las ".$oHoy->format('H:i:s').
-                    " D.".$aRespuestas['nombreApellidos'].
-                    " nacido hace ".$oHoy->diff(Date($aRespuestas['nacimiento']))->y.
+                    ".<br>D.".$aRespuestas['nombreApellidos'].
+                    " nacido hace ".$oHoy->diff($aRespuestas['nacimiento'])->y.
                     " años se siente ".$aRespuestas['sentimiento'].
-                    ". Valora su curso actual con ".$aRespuestas['curso'].
-                    "sobre 10. Estas navidades las dedicará a ".$aRespuestas['navidad'].
-                    "Y, además, opina que:".$aRespuestas['texto']
+                    ".<br>Valora su curso actual con ".$aRespuestas['curso'].
+                    " sobre 10.<br>Estas navidades las dedicará a ".$aRespuestas['navidad'].
+                    ".<br>Y, además, opina que:<br>".$aRespuestas['texto']."</div>"
                     );
             }else{// No se ha enviado?>
                 <form name="ej27" action="<?php echo $_SERVER['PHP_SELF'];// A si mismo?>" method="post" novalidate>
@@ -90,16 +104,12 @@
                             <tr>
                                 <td>Nombre y apellidos:</td>
                                 <td><input type="text" name="nombreApellidos" id="nombreApellidos" class="obligatorio" value="<?php echo(isset($_REQUEST['nombreApellidos'])?$_REQUEST['nombreApellidos']:'');?>" required/></td>
-                                <?php if(!empty($aErrores['nombreApellidos'])){
-                                    echo "<td class='error'>".$aErrores['nombreApellidos']."</td>";
-                                }?>
+                                <?php echo(!empty($aErrores['nombreApellidos'])?"<td class='error'>".$aErrores['nombreApellidos']."</td>":null);?>
                             </tr>
                             <tr>
                                 <td>Fecha de nacimiento:</td>
                                 <td><input type="date" name="nacimiento" id="nacimiento" class="obligatorio" value="<?php echo(isset($_REQUEST['nacimiento'])?$_REQUEST['nacimiento']:'')?>" required/></td>
-                                <?php if(!empty($aErrores['nacimiento'])){
-                                    echo "<td class='error'>".$aErrores['nacimiento']."</td>";
-                                }?>
+                                <?php echo(!empty($aErrores['nacimiento'])?"<td class='error'>".$aErrores['nacimiento']."</td>":null);?>
                             </tr>
                             <tr>
                                 <td>¿Cómo te sientes hoy?</td>
@@ -108,23 +118,19 @@
                                     <label for="muy_mal">MUY MAL</label><br>
                                     <input type="radio" id="sentimiento" name="sentimiento" value="mal" class="obligatorio" required <?php echo((isset($_REQUEST['sentimiento']) && $_REQUEST['sentimiento']=='mal')?'checked':null)?>>
                                     <label for="mal">MAL</label><br>
-                                    <input type="radio" id="sentimiento" name="sentimiento" value="regular" class="obligatorio" required <?php echo((isset($_REQUEST['sentimiento']) && $_REQUEST['sentimiento']=='regular')?'checked':null)?>>
+                                    <input type="radio" id="sentimiento" name="sentimiento" value="regular" class="obligatorio" required <?php echo((!isset($_REQUEST['sentimiento']))||(isset($_REQUEST['sentimiento']) && $_REQUEST['sentimiento']=='regular')?'checked':null)?>>
                                     <label for="regular">REGULAR</label><br>
                                     <input type="radio" id="sentimiento" name="sentimiento" value="bien" class="obligatorio" required <?php echo((isset($_REQUEST['sentimiento']) && $_REQUEST['sentimiento']=='bien')?'checked':null)?>>
                                     <label for="bien">BIEN</label><br>
                                     <input type="radio" id="sentimiento" name="sentimiento" value="muy_bien" class="obligatorio" required <?php echo((isset($_REQUEST['sentimiento']) && $_REQUEST['sentimiento']=='muy_bien')?'checked':null)?>>
                                     <label for="muy_bien">MUY BIEN</label>
                                 </td>
-                                <?php if(!empty($aErrores['curso'])){
-                                    echo "<td class='error'>".$aErrores['curso']."</td>";
-                                }?>
+                                <td style="width: 185px"></td>
                             </tr>
                             <tr>
                                 <td>¿Cómo va el curso?</td>
                                 <td><input type="number" name="curso" id="curso" class="obligatorio" value="<?php echo(isset($_REQUEST['curso'])?$_REQUEST['curso']:'');?>" placeholder="1-10" required/></td>
-                                <?php if(!empty($aErrores['curso'])){
-                                    echo "<td class='error'>".$aErrores['curso']."</td>";
-                                }?>
+                                <?php echo(!empty($aErrores['curso'])?"<td class='error'>".$aErrores['curso']."</td>":null);?>
                             </tr>
                             <tr>
                                 <td>¿Cómo se presentan las vacaciones de navidad?</td>
@@ -135,16 +141,17 @@
                                         <option value="Con la familia">
                                         <option value="De fiesta">
                                         <option value="Trabajando">
-                                        <option value="Estuiando DWES">
+                                        <option value="Estudiando DWES">
                                     </datalist>
                                 </td>
-                                <?php if(!empty($aErrores['curso'])){
-                                    echo "<td class='error'>".$aErrores['curso']."</td>";
-                                }?>
+                                <?php echo(!empty($aErrores['navidad'])?"<td class='error'>".$aErrores['navidad']."</td>":null);?>
                             </tr>
                             <tr>
                                 <td>Describe brevemente tu estado de ánimo</td>
-                                <td colspan="2"><textarea id="texto" name="texto" class="obligatorio" required></textarea></td>
+                                <td colspan="2">
+                                    <textarea id="texto" name="texto" class="obligatorio" maxlength="1000" minlength="1" required><?php echo(isset($_REQUEST['texto'])?$_REQUEST['texto']:'');?></textarea>
+                                </td>
+                                <td class='error' style="width: 89px"><?php echo(!empty($aErrores['texto'])?$aErrores['texto']:null);?></td>
                             </tr>
                             <tr>
                                 <td></td>

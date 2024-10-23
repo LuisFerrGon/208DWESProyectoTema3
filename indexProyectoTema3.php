@@ -176,8 +176,15 @@
                         <td class="eje"></td>
                         <td class="mos"></td>
                     </tr><!--26-->
+                    <tr>
+                        <th span="row" class="num">27</th>
+                        <td>Encuesta individual de valoración</td>
+                        <td class="eje"><a href="codigoPHP/ejercicio27.php">Ejecutar</a></td>
+                        <td class="mos"><a href="mostrarcodigo/muestraEjercicio27.php">Mostrar</a></td>
+                    </tr><!--27-->
                 </tbody>
             </table>
+            <div style='height: 30px'></div>
         </main>
         <footer>
             <a href="../index.php">Luis Ferreras</a>

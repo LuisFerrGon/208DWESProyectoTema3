@@ -71,7 +71,7 @@
                     'contrasena'=>$_REQUEST['contrasena'],
                     'dni'=>$_REQUEST['dni'],
                     'numFavorito'=>$_REQUEST['numFavorito'],
-                    'hoy'=>$oHoy->format('Y-m-d')
+                    'hoy'=>$oHoy
                 ];
                 //Se muestran las respuestas
                 echo"Nombre y apellidos: ".$aRespuestas['nombreApellidos']."<br/>";
@@ -85,7 +85,7 @@
                     echo"DNI: ".$aRespuestas['dni']."<br/>";
                 };
                 echo"Número favorito: ".$aRespuestas['numFavorito']."<br>";
-                echo"Fecha actual: ".$aRespuestas['hoy']."<br>";
+                echo"Fecha actual: ".$aRespuestas['hoy']->format('Y-m-d')."<br>";
             }else{// No se ha enviado?>
                 <form name="ej24" action="<?php echo $_SERVER['PHP_SELF'];// A si mismo?>" method="post" novalidate>
                     <table>

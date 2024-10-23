@@ -25,18 +25,28 @@ a:link, a:visited, a:hover, a:active{
     color: var(--color3);
 }
 .obligatorio{
-    background-color: yellow;
+    background-color: #ffff99;
 }
 .opcional{
-    background-color: white;
-}.invariable{
-    background-color: lightgray;
+    background-color: #ffffff;
+}
+.invariable{
+    background-color: #e6e6e6;
 }
 .error{
-    color: red;
+    color: #ff0000;
 }
 code *{
     margin: 0;
+}
+table{
+    display: table;
+    table-layout: fixed;
+    textarea{
+        margin: auto;
+        width: 95%;
+        height: 50px
+    }
 }
 footer{
     background-color: white;
