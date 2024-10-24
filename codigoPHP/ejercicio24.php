@@ -5,6 +5,21 @@
         <meta charset="UTF-8">
         <title>Luis Ferreras</title>
         <link rel="stylesheet" type="text/css" href="../webroot/estilosEjercicios.css">
+        <style>
+            table{
+                margin: 5px auto;
+                border: 0.5px solid lightgrey;
+                border-radius: 5px;
+                background-color: #f0f0f5;
+            }
+            div{
+                width: fit-content;
+                margin: 5px auto;
+                border: 0.5px solid lightgrey;
+                border-radius: 5px;
+                background-color: #f0f0f5;
+            }
+        </style>
     </head>
     <body>
         <header>
@@ -136,11 +151,13 @@
                                 <td>Fecha actual:</td>
                                 <td><input type="text" name="hoy" id="hoy" class="invariable" value="<?php echo ($oHoy->format('Y-m-d'));?>" disabled/><br/></td>
                             </tr>
+                        </tbody>
+                        <tfoot>
                             <tr>
                                 <td></td>
                                 <td class="boton"><input type="submit" name="enviar" id="enviar"></td>
                             </tr>
-                        </tbody>
+                        </tfoot>
                     </table>
                 </form>
             <?php }?>

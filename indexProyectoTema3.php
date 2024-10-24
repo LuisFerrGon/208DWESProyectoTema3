@@ -167,8 +167,8 @@
                     <tr>
                         <th span="row" class="num">25</th>
                         <td>Trabajar en PlantillaFormulario.php mi plantilla para hacer formularios como churros.</td>
-                        <td class="eje"></td>
-                        <td class="mos"></td>
+                        <td class="eje"><a href="codigoPHP/ejercicio25.php">Ejecutar</a></td>
+                        <td class="mos"><a href="mostrarcodigo/muestraEjercicio25.php">Mostrar</a></td>
                     </tr><!--25-->
                     <tr>
                         <th span="row" class="num">26</th>

@@ -153,11 +153,13 @@
                                 </td>
                                 <td class='error' style="width: 89px"><?php echo(!empty($aErrores['texto'])?$aErrores['texto']:null);?></td>
                             </tr>
+                        </tbody>
+                        <tfoot>
                             <tr>
                                 <td></td>
                                 <td class="boton"><input type="submit" name="enviar" id="enviar"></td>
                             </tr>
-                        </tbody>
+                        </tfoot>
                     </table>
                 </form>
             <?php }?>
