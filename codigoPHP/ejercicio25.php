@@ -102,20 +102,21 @@
                     'float-Obl'=>$_REQUEST['float-Obl'],
                     'float-Opc'=>$_REQUEST['float-Opc'],
                     'radio'=>$_REQUEST['radio'],
-                    'checkbox-Opc'=>[],
+                    'checkbox-Obl'=>[
+                        isset($_REQUEST['checkboxA-Obl'])?$_REQUEST['checkboxA-Obl']:null,
+                        isset($_REQUEST['checkboxB-Obl'])?$_REQUEST['checkboxB-Obl']:null,
+                        isset($_REQUEST['checkboxC-Obl'])?$_REQUEST['checkboxC-Obl']:null,
+                        isset($_REQUEST['checkboxD-Obl'])?$_REQUEST['checkboxD-Obl']:null,
+                        isset($_REQUEST['checkboxE-Obl'])?$_REQUEST['checkboxE-Obl']:null,
+                    ],
+                    'checkbox-Opc'=>[
+                        isset($_REQUEST['checkboxA-Opc'])?$_REQUEST['checkboxA-Opc']:null,
+                        isset($_REQUEST['checkboxB-Opc'])?$_REQUEST['checkboxB-Opc']:null,
+                        isset($_REQUEST['checkboxC-Opc'])?$_REQUEST['checkboxC-Opc']:null,
+                        isset($_REQUEST['checkboxD-Opc'])?$_REQUEST['checkboxD-Opc']:null,
+                        isset($_REQUEST['checkboxE-Opc'])?$_REQUEST['checkboxE-Opc']:null,
+                    ],
                 ];
-                $checkObl=[
-                    isset($_REQUEST['checkboxA-Obl'])?$_REQUEST['checkboxA-Obl']:null,
-                    isset($_REQUEST['checkboxB-Obl'])?$_REQUEST['checkboxB-Obl']:null,
-                    isset($_REQUEST['checkboxC-Obl'])?$_REQUEST['checkboxC-Obl']:null,
-                    isset($_REQUEST['checkboxD-Obl'])?$_REQUEST['checkboxD-Obl']:null,
-                    isset($_REQUEST['checkboxE-Obl'])?$_REQUEST['checkboxE-Obl']:null,
-                ];
-                foreach($checkObl as $respuesta){
-                    if($respuesta!=null){
-                        array_push($aRespuestas['checkbox-Obl'], $respuesta);
-                    };
-                };
                 //Se muestran las respuestas
                 echo "<div>";
                 echo "Alfanumerico Obligatorio: ".$aRespuestas['alfanumerico-Obl']."<br/>";
@@ -127,7 +128,13 @@
                 echo "Float Obligatorio: ".$aRespuestas['float-Obl']."<br/>";
                 echo (!empty($aRespuestas['float-Opc'])?"Float Opcional: ".$aRespuestas['float-Opc']."<br/>":null);
                 echo "Radio: ".$aRespuestas['radio']."<br/>";
-                echo "Checkbox obligatorio: ".implode(", ", $aRespuestas['checkbox-Obl'])."<br/>";
+                echo "Checkbox Obligatorio: ".implode(", ", $aRespuestas['checkbox-Obl'])."<br/>";
+                for($i=1; $i<=count($aRespuestas['checkbox-Opc']); $i++){
+                    if(!empty($aRespuestas['checkbox-Opc'][$i])){
+                        echo"Checkbox Opcional: ".implode(", ", $aRespuestas['checkbox-Opc'])."<br>";
+                        $i=count($aRespuestas['checkbox-Opc'])+1;
+                    }
+                }
                 echo "</div>";
             }else{// No se ha enviado?>
                 <form name="ej27" action="<?php echo $_SERVER['PHP_SELF'];// A si mismo?>" method="post" novalidate>
