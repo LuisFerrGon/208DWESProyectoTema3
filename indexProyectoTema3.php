@@ -19,7 +19,7 @@
                         <td>Hola mundo y phpinfo()</td>
                         <td class="eje"><a href="codigoPHP/ejercicio00.php">Ejecutar</a></td>
                         <td class="mos"><a href="mostrarcodigo/muestraEjercicio00.php">Mostrar</a></td>
-                    </tr>
+                    </tr><!--00-->
                     <tr>
                         <th span="row" class="num">01</th>
                         <td>Inicializar variables de los distintos tipos de datos básicos y mostrar los datos por pantalla.</td>
